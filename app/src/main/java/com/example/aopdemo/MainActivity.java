@@ -1,9 +1,8 @@
 package com.example.aopdemo;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
-import android.util.Log;
+import android.view.View;
+import android.widget.Toast;
 
 public class MainActivity extends BaseActivity {
 
@@ -11,19 +10,14 @@ public class MainActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        onCreateView();
         setTitle("主页面");
-        new Animal().fly();
-        new Handler().postDelayed(new Runnable() {
+
+        findViewById(R.id.btn_login).setOnClickListener(new View.OnClickListener() {
             @Override
-            public void run() {
-                startActivity(new Intent(MainActivity.this, Main2Activity.class));
+            public void onClick(View v) {
+                Toast.makeText(MainActivity.this, "登录", Toast.LENGTH_SHORT).show();
             }
-        }, 300);
-    }
+        });
 
-    public void onCreateView() {
-        Log.e("TAG", "onCreateView");
     }
-
 }
