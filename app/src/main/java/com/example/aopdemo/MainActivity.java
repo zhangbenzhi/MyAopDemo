@@ -22,6 +22,13 @@ public class MainActivity extends BaseActivity {
             }
         });
 
+        findViewById(R.id.btn_jump_to).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, SecondActivity.class));
+            }
+        });
+
         // 模拟数据请求
         new Handler().postDelayed(new Runnable() {
             @Override
@@ -37,8 +44,6 @@ public class MainActivity extends BaseActivity {
         }
 
         TestKottlin.INSTANCE.get();
-
-        startActivity(new Intent(this, SecondActivity.class));
     }
 
     public void onDataLoaded(RoomBean roomBean) {

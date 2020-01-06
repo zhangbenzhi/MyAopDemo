@@ -8,18 +8,14 @@ import android.widget.TextView;
 
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.After;
-import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Pointcut;
 
 /**
- * 埋点aspect:
- *
  * @author 张本志
- * @since 2019-12-30 19:26
+ * @since 2020-01-06 18:08
  */
 @Aspect
-public class TrackAspect {
+public class TestAspectJ {
 
     /**
      * 统计activity页面浏览事件
@@ -43,17 +39,13 @@ public class TrackAspect {
      * 但是如果是实现 OnClickListener 接口的类则无法切入。所以应该加上 OnClickListener 的子类
      * ！！！！实际中好像并没什么影响
      */
-    @Pointcut("execution(* android.view.View.OnClickListener+.onClick(..)) && args(view)")
-    public void onClick(View view) {
-    }
-
-    @After("onClick()")
-    public void trackViewClick(JoinPoint joinPoint) {
+    @After("execution(* android.view.View.OnClickListener+.onClick(..)) && args(view)")
+    public void trackViewClick(View view) {
         String content = "";
-        if (joinPoint instanceof Button) {
-            content = ((Button) joinPoint).getText().toString();
-        } else if (joinPoint instanceof TextView) {
-            content = ((TextView) joinPoint).getText().toString();
+        if (view instanceof Button) {
+            content = ((Button) view).getText().toString();
+        } else if (view instanceof TextView) {
+            content = ((TextView) view).getText().toString();
         }
         Log.e("TAG", "trackViewClick:元素内容=" + content);
     }
@@ -82,4 +74,5 @@ public class TrackAspect {
     public void onGetKotlin() {
         Log.e("TAG", "getKotlin....");
     }
+
 }
