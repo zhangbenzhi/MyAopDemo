@@ -1,7 +1,9 @@
 package com.example.aopdemo;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -27,9 +29,24 @@ public class MainActivity extends BaseActivity {
                 onDataLoaded(new RoomBean("123323", "官悦欣园", "23323"));
             }
         }, 300);
+
+        try {
+            toLow(null);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        TestKottlin.INSTANCE.get();
+
+        startActivity(new Intent(this, SecondActivity.class));
     }
 
     public void onDataLoaded(RoomBean roomBean) {
 
+    }
+
+    public void toLow(String msg) throws NullPointerException {
+        Log.e("TAG", "异常了....");
+        msg.toLowerCase();
     }
 }

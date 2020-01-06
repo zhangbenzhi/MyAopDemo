@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.After;
+import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 
@@ -66,4 +67,19 @@ public class TrackAspect {
         Log.e("TAG", "拿到的房间名称:" + roomBean.roomName);
     }
 
+    /**
+     * 在抛出异常的方法处切点
+     */
+    @After("execution(* *(..) throws NullPointerException)")
+    public void onCrash() {
+        Log.e("TAG", "捕获了。。。。");
+    }
+
+    /**
+     * kotlin类方法调用时
+     */
+    @After("execution(* com.example.aopdemo.TestKottlin.get(..))")
+    public void onGetKotlin() {
+        Log.e("TAG", "getKotlin....");
+    }
 }
