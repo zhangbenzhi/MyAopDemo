@@ -37,11 +37,7 @@ public class MainActivity extends BaseActivity {
             }
         }, 300);
 
-        try {
-            toLow(null);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        toLow(null);
 
         TestKottlin.INSTANCE.get();
     }
@@ -50,7 +46,7 @@ public class MainActivity extends BaseActivity {
 
     }
 
-    public void toLow(String msg) throws NullPointerException {
+    public void toLow(String msg) {
         Log.e("TAG", "异常了....");
         msg.toLowerCase();
     }

@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.After;
+import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Aspect;
 
 /**
@@ -75,4 +76,9 @@ public class TestAspectJ {
         Log.e("TAG", "getKotlin....");
     }
 
+    @AfterThrowing(pointcut = "execution(* com.example.aopdemo.*.*(..))", throwing = "exception")
+    public void catchExceptionMethod(Exception exception) {
+        String message = exception.toString();
+        Log.e("TAG", "catchExceptionMethod: " + message);
+    }
 }
